@@ -4,26 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
-
+use App\Models\Area;
+use App\Models\TrainingCenter;
 class CourseController extends Controller
 {
-    public function consultaArea(){
-        $curso = Course::find(2);
-        return $curso->area;
-    }
 
-    public function consultaCentro(){
-        $curso = Course::find(1);
-        return $curso->training_center;
-    }
+    public function create()
+    {
+        $areas = Area::all();
+        $centers = TrainingCenter::all();
 
-    public function consultaAprendiz(){
-        $curso = Course::find(1);
-        return $curso->aprendices;
+        return view('course.create', compact('areas', 'centers'));
     }
-
-    public function consultaProfe(){
-        $curso = Course::find(1);
-        return $curso->teachers;
+    
+    public function store(Request $request) {
+        $course = Course::create($request->all());
+        return $course;
     }
 }
