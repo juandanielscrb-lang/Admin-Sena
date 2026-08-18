@@ -4,11 +4,73 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
-class CourseTeacherController extends Controller
+use App\Models\Area;
+use App\Models\TrainingCenter;
+
+class CourseController extends Controller
 {
-    //
-        public function store(Request $request) {
-        $course = Course::create($request->all());
-        return $course;
+    public function index(Request $request)
+    {
+        $search = $request->search;
+
+        $courses = Course::query();
+
+        if ($search) {
+            $courses->where(function ($query) use ($search) {
+                $query->where('course_number', 'like', "%{$search}%")
+                      ->orWhere('day', 'like', "%{$search}%");
+            });
+        }
+
+        $courses = $courses->get();
+
+        return view('course.index', compact('courses'));
+    }
+
+    public function create()
+    {
+        $areas = Area::all();
+        $centers = TrainingCenter::all();
+
+        return view('course.create', compact('areas', 'centers'));
+    }
+
+    public function store(Request $request)
+    {
+        Course::create($request->all());
+
+        return redirect()->route('course.list');
+    }
+
+    public function show($id)
+    {
+        $course = Course::find($id);
+
+        return view('course.show', compact('course'));
+    }
+
+    public function edit(Course $course)
+    {
+        $areas = Area::all();
+        $centers = TrainingCenter::all();
+
+        return view(
+            'course.edit',
+            compact('course', 'areas', 'centers')
+        );
+    }
+
+    public function update(Request $request, Course $course)
+    {
+        $course->update($request->all());
+
+        return redirect()->route('course.list');
+    }
+
+    public function destroy(Course $course)
+    {
+        $course->delete();
+
+        return redirect()->route('course.list');
     }
 }

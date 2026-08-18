@@ -3,15 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
 class Computer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['number', 'brand'];
+    protected $connection = 'mongodb';
 
-    public function apprentice(){
+    protected $fillable = [
+        'number',
+        'brand'
+    ];
+
+    public function apprentice()
+    {
         return $this->hasOne(Apprentice::class);
     }
 }

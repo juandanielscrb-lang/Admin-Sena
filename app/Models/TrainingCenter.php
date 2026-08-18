@@ -3,19 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
 class TrainingCenter extends Model
 {
     use HasFactory;
 
-     protected $fillable = ['name', 'location'];
+    protected $connection = 'mongodb';
 
-    public function teachers(){
+    protected $fillable = [
+        'name',
+        'location'
+    ];
+
+    public function teachers()
+    {
         return $this->hasMany(Teacher::class);
     }
 
-    public function courses(){
+    public function courses()
+    {
         return $this->hasMany(Course::class);
     }
 }

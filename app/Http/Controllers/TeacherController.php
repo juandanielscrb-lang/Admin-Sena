@@ -9,8 +9,14 @@ use App\Models\TrainingCenter;
 
 class TeacherController extends Controller
 {
+    public function index()
+    {
+    $teachers = Teacher::with(['area', 'training_center'])->get();
 
-     public function create()
+    return view('teacher.index', compact('teachers'));
+    }
+
+    public function create()
     {
         $areas = Area::all();
         $centers = TrainingCenter::all();
@@ -18,13 +24,42 @@ class TeacherController extends Controller
         return view('teacher.create', compact('areas', 'centers'));
     }
 
+    public function store(Request $request)
+    {
+        Teacher::create($request->all());
 
-     public function store(Request $request) {
-        $teacher = Teacher::create($request->all());
-        return $teacher;
+        return redirect()->route('teacher.list');
+    }
+
+    public function show($id)
+    {
+        $teacher = Teacher::find($id);
+
+        return view('teacher.show', compact('teacher'));
+    }
+
+    public function edit(Teacher $teacher)
+    {
+        $areas = Area::all();
+        $centers = TrainingCenter::all();
+
+        return view(
+            'teacher.edit',
+            compact('teacher', 'areas', 'centers')
+        );
+    }
+
+    public function update(Request $request, Teacher $teacher)
+    {
+        $teacher->update($request->all());
+
+        return redirect()->route('teacher.list');
+    }
+
+    public function destroy(Teacher $teacher)
+    {
+        $teacher->delete();
+
+        return redirect()->route('teacher.list');
     }
 }
-
-
-
-

@@ -1,8 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
-
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,9 +16,13 @@
     <!-- Navbar -->
     @include('includes.navbar')
 
+
     <div class="container mt-4">
+
         @yield('content')
+
     </div>
+
 
     @include('includes.footer')
 
@@ -32,5 +32,3 @@
 </body>
 
 </html>
-
-@endsection
