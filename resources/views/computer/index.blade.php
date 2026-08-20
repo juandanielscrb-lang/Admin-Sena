@@ -32,20 +32,24 @@
             </button>
 
             @if(request('search'))
+
                 <a href="{{ route('computer.list') }}" class="btn btn-secondary">
                     Limpiar
                 </a>
+
             @endif
 
         </div>
 
     </form>
 
+    {{-- TABLA --}}
     <table class="table table-bordered table-striped">
 
         <thead class="table-dark">
 
             <tr>
+                <th>ID</th>
                 <th>Número</th>
                 <th>Marca</th>
                 <th>Acciones</th>
@@ -59,27 +63,39 @@
 
                 <tr>
 
-                    <td>{{ $computer->number }}</td>
+                    <td>
+                        {{ $computer->id }}
+                    </td>
 
-                    <td>{{ $computer->brand }}</td>
+                    <td>
+                        {{ $computer->number }}
+                    </td>
+
+                    <td>
+                        {{ $computer->brand }}
+                    </td>
 
                     <td>
 
                         {{-- VER --}}
-                        <a href="{{ route('computer.show', $computer->_id) }}"
-                           class="btn btn-info btn-sm">
+                        <a
+                            href="{{ route('computer.show', $computer->id) }}"
+                            class="btn btn-info btn-sm"
+                        >
                             Ver
                         </a>
 
                         {{-- EDITAR --}}
-                        <a href="{{ route('computer.edit', $computer->_id) }}"
-                           class="btn btn-warning btn-sm">
+                        <a
+                            href="{{ route('computer.edit', $computer->id) }}"
+                            class="btn btn-warning btn-sm"
+                        >
                             Editar
                         </a>
 
                         {{-- ELIMINAR --}}
                         <form
-                            action="{{ route('computer.destroy', $computer->_id) }}"
+                            action="{{ route('computer.destroy', $computer->id) }}"
                             method="POST"
                             style="display:inline;"
                         >
@@ -105,13 +121,17 @@
 
                 <tr>
 
-                    <td colspan="3" class="text-center">
+                    <td colspan="4" class="text-center">
 
                         @if(request('search'))
+
                             No se encontraron computadoras para
                             "{{ request('search') }}".
+
                         @else
+
                             No hay computadoras registradas.
+
                         @endif
 
                     </td>

@@ -1,0 +1,35 @@
+.btn-sena-ver {
+    background-color: #39A900;
+    border-color: #39A900;
+    color: white;
+}
+
+.btn-sena-ver:hover {
+    background-color: #2f8c00;
+    border-color: #2f8c00;
+    color: white;
+}
+
+.btn-sena-editar {
+    background-color: #1f5f00;
+    border-color: #1f5f00;
+    color: white;
+}
+
+.btn-sena-editar:hover {
+    background-color: #174800;
+    border-color: #174800;
+    color: white;
+}
+
+.btn-sena-eliminar {
+    background-color: #343a40;
+    border-color: #343a40;
+    color: white;
+}
+
+.btn-sena-eliminar:hover {
+    background-color: #212529;
+    border-color: #212529;
+    color: white;
+}

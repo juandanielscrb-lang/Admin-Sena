@@ -17,9 +17,11 @@ class ApprenticeController extends Controller
 
         if ($search) {
             $aprendices->where(function ($query) use ($search) {
+
                 $query->where('name', 'like', "%{$search}%")
                       ->orWhere('email', 'like', "%{$search}%")
                       ->orWhere('cell_number', 'like', "%{$search}%");
+
             });
         }
 
@@ -33,7 +35,7 @@ class ApprenticeController extends Controller
     public function show($id)
     {
         $aprendice = Apprentice::with(['course', 'computer'])
-            ->find($id);
+            ->findOrFail($id);
 
         return view('apprentice.show', compact('aprendice'));
     }
@@ -52,22 +54,25 @@ class ApprenticeController extends Controller
         );
     }
 
+    // GUARDAR
     public function store(Request $request)
     {
         Apprentice::create($request->all());
 
-        return redirect()->route('apprentice.list');
+        return redirect()
+            ->route('apprentice.list')
+            ->with('success', 'Aprendiz creado correctamente.');
     }
 
     // FORMULARIO PARA EDITAR
     public function edit($id)
     {
-        $aprendice = Apprentice::find($id);
+        $aprendice = Apprentice::findOrFail($id);
 
         $cursos = Course::all();
 
         $computers = Computer::whereDoesntHave('apprentice')
-            ->orWhere('_id', $aprendice->computer_id)
+            ->orWhere('id', $aprendice->computer_id)
             ->get();
 
         return view(
@@ -79,20 +84,24 @@ class ApprenticeController extends Controller
     // ACTUALIZAR
     public function update(Request $request, $id)
     {
-        $aprendice = Apprentice::find($id);
+        $aprendice = Apprentice::findOrFail($id);
 
         $aprendice->update($request->all());
 
-        return redirect()->route('apprentice.list');
+        return redirect()
+            ->route('apprentice.list')
+            ->with('success', 'Aprendiz actualizado correctamente.');
     }
 
     // ELIMINAR
     public function destroy($id)
     {
-        $aprendice = Apprentice::find($id);
+        $aprendice = Apprentice::findOrFail($id);
 
         $aprendice->delete();
 
-        return redirect()->route('apprentice.list');
+        return redirect()
+            ->route('apprentice.list')
+            ->with('success', 'Aprendiz eliminado correctamente.');
     }
 }

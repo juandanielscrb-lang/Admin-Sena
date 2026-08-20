@@ -32,15 +32,18 @@
             </button>
 
             @if(request('search'))
+
                 <a href="{{ route('area.list') }}" class="btn btn-secondary">
                     Limpiar
                 </a>
+
             @endif
 
         </div>
 
     </form>
 
+    {{-- MENSAJE DE ÉXITO --}}
     @if(session('success'))
 
         <div class="alert alert-success">
@@ -49,11 +52,13 @@
 
     @endif
 
+    {{-- TABLA --}}
     <table class="table table-bordered table-striped">
 
         <thead class="table-dark">
 
             <tr>
+                <th>ID</th>
                 <th>Nombre del Área</th>
                 <th>Acciones</th>
             </tr>
@@ -66,25 +71,35 @@
 
                 <tr>
 
-                    <td>{{ $area->name }}</td>
+                    <td>
+                        {{ $area->id }}
+                    </td>
+
+                    <td>
+                        {{ $area->name }}
+                    </td>
 
                     <td>
 
                         {{-- VER --}}
-                        <a href="{{ route('area.show', $area->_id) }}"
-                           class="btn btn-info btn-sm">
+                        <a
+                            href="{{ route('area.show', $area->id) }}"
+                            class="btn btn-info btn-sm"
+                        >
                             Ver
                         </a>
 
                         {{-- EDITAR --}}
-                        <a href="{{ route('area.edit', $area->_id) }}"
-                           class="btn btn-warning btn-sm">
+                        <a
+                            href="{{ route('area.edit', $area->id) }}"
+                            class="btn btn-warning btn-sm"
+                        >
                             Editar
                         </a>
 
                         {{-- ELIMINAR --}}
                         <form
-                            action="{{ route('area.destroy', $area->_id) }}"
+                            action="{{ route('area.destroy', $area->id) }}"
                             method="POST"
                             style="display:inline;"
                         >
@@ -110,13 +125,17 @@
 
                 <tr>
 
-                    <td colspan="2" class="text-center">
+                    <td colspan="3" class="text-center">
 
                         @if(request('search'))
+
                             No se encontraron áreas para
                             "{{ request('search') }}".
+
                         @else
+
                             No hay áreas registradas.
+
                         @endif
 
                     </td>

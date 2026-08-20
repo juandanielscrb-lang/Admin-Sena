@@ -6,7 +6,10 @@
 
     <h1>Actualizar aprendiz</h1>
 
-    <form action="{{ route('apprentice.update', ['apprentice' => $aprendice->_id]) }}" method="POST">
+    <form
+        action="{{ route('apprentice.update', ['apprentice' => $aprendice->id]) }}"
+        method="POST"
+    >
 
         @csrf
         @method('PUT')
@@ -59,8 +62,8 @@
             @foreach ($cursos as $curso)
 
                 <option
-                    value="{{ $curso->_id }}"
-                    {{ $aprendice->course_id == $curso->_id ? 'selected' : '' }}
+                    value="{{ $curso->id }}"
+                    {{ $aprendice->course_id == $curso->id ? 'selected' : '' }}
                 >
                     {{ $curso->course_number }}
                 </option>
@@ -80,8 +83,8 @@
             @foreach ($computers as $computer)
 
                 <option
-                    value="{{ $computer->_id }}"
-                    {{ $aprendice->computer_id == $computer->_id ? 'selected' : '' }}
+                    value="{{ $computer->id }}"
+                    {{ $aprendice->computer_id == $computer->id ? 'selected' : '' }}
                 >
                     {{ $computer->number }}
                 </option>

@@ -13,7 +13,7 @@ use App\Http\Controllers\ApprenticeController;
 
 Route::get('/', function () {
     return view('inicio');
-});
+})->name('inicio');
 
 //area
 
@@ -75,3 +75,9 @@ Route::get('teacher/show/{id}', [TeacherController::class, 'show'])->name('teach
 Route::get('teacher/{teacher}/edit', [TeacherController::class, 'edit'])->name('teacher.edit');
 Route::put('teacher/{teacher}', [TeacherController::class, 'update'])->name('teacher.update');
 Route::delete('teacher/{teacher}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
+
+Route::get('/contactanos', function () {return view('contactanos.index');})->name('contactanos');
+
+Route::get('/quienes-somos', function () {return view('quienes_somos.index');})->name('quienes.somos');
+
+Route::get('/noticias', function () {return view('noticias.index');})->name('noticias');

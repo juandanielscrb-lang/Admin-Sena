@@ -32,25 +32,31 @@
             </button>
 
             @if(request('search'))
+
                 <a href="{{ route('teacher.list') }}" class="btn btn-secondary">
                     Limpiar
                 </a>
+
             @endif
 
         </div>
 
     </form>
 
+    {{-- TABLA --}}
     <table class="table table-bordered table-striped">
 
         <thead class="table-dark">
+
             <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Área</th>
                 <th>Centro de Formación</th>
                 <th>Acciones</th>
             </tr>
+
         </thead>
 
         <tbody>
@@ -59,9 +65,17 @@
 
                 <tr>
 
-                    <td>{{ $teacher->name }}</td>
+                    <td>
+                        {{ $teacher->id }}
+                    </td>
 
-                    <td>{{ $teacher->email }}</td>
+                    <td>
+                        {{ $teacher->name }}
+                    </td>
+
+                    <td>
+                        {{ $teacher->email }}
+                    </td>
 
                     <td>
                         {{ $teacher->area->name ?? 'Sin área' }}
@@ -73,18 +87,25 @@
 
                     <td>
 
-                        <a href="{{ route('teacher.show', $teacher->_id) }}"
-                           class="btn btn-info btn-sm">
+                        {{-- VER --}}
+                        <a
+                            href="{{ route('teacher.show', $teacher->id) }}"
+                            class="btn btn-info btn-sm"
+                        >
                             Ver
                         </a>
 
-                        <a href="{{ route('teacher.edit', $teacher->_id) }}"
-                           class="btn btn-warning btn-sm">
+                        {{-- EDITAR --}}
+                        <a
+                            href="{{ route('teacher.edit', $teacher->id) }}"
+                            class="btn btn-warning btn-sm"
+                        >
                             Editar
                         </a>
 
+                        {{-- ELIMINAR --}}
                         <form
-                            action="{{ route('teacher.destroy', $teacher->_id) }}"
+                            action="{{ route('teacher.destroy', $teacher->id) }}"
                             method="POST"
                             style="display:inline;"
                         >
@@ -109,9 +130,11 @@
             @empty
 
                 <tr>
-                    <td colspan="5" class="text-center">
+
+                    <td colspan="6" class="text-center">
                         No hay profesores registrados.
                     </td>
+
                 </tr>
 
             @endforelse

@@ -2,120 +2,118 @@
 
 @section('content')
 
-<div class="container mt-4">
+{{-- CARRUSEL SENA --}}
+<div id="carouselSena"
+     class="carousel slide mb-5"
+     data-bs-ride="carousel"
+     data-bs-interval="4000">
 
-    {{-- BIENVENIDA --}}
-    <div class="text-center mb-5">
-        <h1>Bienvenido a Admin SENA</h1>
+     
+    {{-- Indicadores --}}
+    <div class="carousel-indicators">
 
-        <p class="lead">
-            Sistema de administración y gestión de información.
-        </p>
+        <button type="button"
+                data-bs-target="#carouselSena"
+                data-bs-slide-to="0"
+                class="active">
+        </button>
+
+        <button type="button"
+                data-bs-target="#carouselSena"
+                data-bs-slide-to="1">
+        </button>
+
+        <button type="button"
+                data-bs-target="#carouselSena"
+                data-bs-slide-to="2">
+        </button>
+
     </div>
 
+    {{-- Imágenes --}}
+    <div class="carousel-inner">
 
-    <div class="row">
+        <div class="carousel-item active">
 
-        {{-- MISIÓN --}}
-        <div class="col-md-6 mb-4">
+            <img
+                src="{{ asset('images/Sena1.jpg') }}"
+                class="d-block w-100"
+                style="height: 450px; object-fit: cover;"
+                alt="SENA"
+            >
 
-            <div class="card h-100 shadow">
-
-                <div class="card-header bg-success text-white">
-                    <h2 class="h4 mb-0">Misión</h2>
-                </div>
-
-                <div class="card-body">
-
-                    <p>
-                        Admin SENA tiene como misión facilitar la gestión
-                        y administración de la información relacionada con
-                        aprendices, instructores, cursos, centros de formación,
-                        áreas y recursos tecnológicos de la institución.
-                    </p>
-
-                </div>
-
+            <div class="carousel-caption d-none d-md-block">
+                <h2>Servicio Nacional de Aprendizaje</h2>
+                <p>Formación para el desarrollo profesional.</p>
             </div>
 
         </div>
 
+        <div class="carousel-item">
 
-        {{-- VISIÓN --}}
-        <div class="col-md-6 mb-4">
+            <img
+                src="{{ asset('images/Sena2.jpg') }}"
+                class="d-block w-100"
+                style="height: 450px; object-fit: cover;"
+                alt="Formación SENA"
+            >
 
-            <div class="card h-100 shadow">
-
-                <div class="card-header bg-success text-white">
-                    <h2 class="h4 mb-0">Visión</h2>
-                </div>
-
-                <div class="card-body">
-
-                    <p>
-                        Ser una herramienta eficiente, organizada y fácil
-                        de utilizar que permita mejorar la administración
-                        de la información del SENA y apoyar los procesos
-                        académicos y administrativos de la institución.
-                    </p>
-
-                </div>
-
+            <div class="carousel-caption d-none d-md-block">
+                <h2>Formación de calidad</h2>
+                <p>Preparación para el mundo laboral.</p>
             </div>
 
         </div>
 
-    </div>
+        <div class="carousel-item">
 
+            <img
+                src="{{ asset('images/Sena3.jpg') }}"
+                class="d-block w-100"
+                style="height: 450px; object-fit: cover;"
+                alt="Aprendices SENA"
+            >
 
-    {{-- CONTÁCTANOS --}}
-    <div class="card shadow mt-3 mb-5">
-
-        <div class="card-header bg-success text-white">
-            <h2 class="h4 mb-0">Contáctanos</h2>
-        </div>
-
-        <div class="card-body">
-
-            <div class="row text-center">
-
-                <div class="col-md-4 mb-3">
-
-                    <h5>📍 Dirección</h5>
-
-                    <p>
-                        Centro de Formación SENA
-                    </p>
-
-                </div>
-
-
-                <div class="col-md-4 mb-3">
-
-                    <h5>📞 Teléfono</h5>
-
-                    <p>
-                        +57 000 000 0000
-                    </p>
-
-                </div>
-
-
-                <div class="col-md-4 mb-3">
-
-                    <h5>📧 Correo</h5>
-
-                    <p>
-                        contacto@adminsena.com
-                    </p>
-
-                </div>
-
+            <div class="carousel-caption d-none d-md-block">
+                <h2>Aprendices SENA</h2>
+                <p>Educación y oportunidades para todos.</p>
             </div>
 
         </div>
 
     </div>
+
+    {{-- Botón anterior --}}
+    <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselSena"
+        data-bs-slide="prev"
+    >
+
+        <span class="carousel-control-prev-icon"></span>
+
+        <span class="visually-hidden">
+            Anterior
+        </span>
+
+    </button>
+
+    {{-- Botón siguiente --}}
+    <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselSena"
+        data-bs-slide="next"
+    >
+
+        <span class="carousel-control-next-icon"></span>
+
+        <span class="visually-hidden">
+            Siguiente
+        </span>
+
+    </button>
 
 </div>
 

@@ -3,13 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use MongoDB\Laravel\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Apprentice extends Model
 {
     use HasFactory;
-
-    protected $connection = 'mongodb';
 
     protected $fillable = [
         'name',
@@ -21,19 +19,11 @@ class Apprentice extends Model
 
     public function course()
     {
-        return $this->belongsTo(
-            Course::class,
-            'course_id',
-            '_id'
-        );
+        return $this->belongsTo(Course::class, 'course_id');
     }
 
     public function computer()
     {
-        return $this->belongsTo(
-            Computer::class,
-            'computer_id',
-            '_id'
-        );
+        return $this->belongsTo(Computer::class, 'computer_id');
     }
 }

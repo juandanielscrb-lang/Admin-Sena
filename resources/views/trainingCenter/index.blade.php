@@ -32,20 +32,24 @@
             </button>
 
             @if(request('search'))
+
                 <a href="{{ route('trainingCenter.list') }}" class="btn btn-secondary">
                     Limpiar
                 </a>
+
             @endif
 
         </div>
 
     </form>
 
+    {{-- TABLA --}}
     <table class="table table-bordered table-striped">
 
         <thead class="table-dark">
 
             <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Ubicación</th>
                 <th>Acciones</th>
@@ -59,27 +63,39 @@
 
                 <tr>
 
-                    <td>{{ $center->name }}</td>
+                    <td>
+                        {{ $center->id }}
+                    </td>
 
-                    <td>{{ $center->location }}</td>
+                    <td>
+                        {{ $center->name }}
+                    </td>
+
+                    <td>
+                        {{ $center->location }}
+                    </td>
 
                     <td>
 
                         {{-- VER --}}
-                        <a href="{{ route('trainingCenter.show', $center->_id) }}"
-                           class="btn btn-info btn-sm">
+                        <a
+                            href="{{ route('trainingCenter.show', $center->id) }}"
+                            class="btn btn-info btn-sm"
+                        >
                             Ver
                         </a>
 
                         {{-- EDITAR --}}
-                        <a href="{{ route('trainingCenter.edit', $center->_id) }}"
-                           class="btn btn-warning btn-sm">
+                        <a
+                            href="{{ route('trainingCenter.edit', $center->id) }}"
+                            class="btn btn-warning btn-sm"
+                        >
                             Editar
                         </a>
 
                         {{-- ELIMINAR --}}
                         <form
-                            action="{{ route('trainingCenter.destroy', $center->_id) }}"
+                            action="{{ route('trainingCenter.destroy', $center->id) }}"
                             method="POST"
                             style="display:inline;"
                         >
@@ -105,13 +121,17 @@
 
                 <tr>
 
-                    <td colspan="3" class="text-center">
+                    <td colspan="4" class="text-center">
 
                         @if(request('search'))
+
                             No se encontraron centros para
                             "{{ request('search') }}".
+
                         @else
+
                             No hay centros de formación registrados.
+
                         @endif
 
                     </td>
