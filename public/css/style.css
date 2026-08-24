@@ -1,0 +1,543 @@
+
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.navbar {
+    background-color: #39A900 !important;
+    padding: 8px 0;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 22px;
+}
+
+.navbar-brand img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    background-color: white;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.navbar .nav-link {
+    color: white !important;
+    font-weight: 500;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: #d9ffd0 !important;
+}
+
+.navbar .nav-link i {
+    margin-right: 5px;
+}
+
+
+
+.dropdown-menu {
+    border: none;
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    border-radius: 7px;
+}
+
+.dropdown-item:hover {
+    background-color: #39A900;
+    color: white;
+}
+
+.dropdown-item i {
+    width: 25px;
+}
+
+
+.navbar .form-control {
+    border-radius: 20px;
+}
+
+.navbar .btn {
+    border-radius: 20px;
+}
+
+
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+}
+
+.text-sena {
+    color: #39A900 !important;
+}
+
+
+
+.btn-success {
+    background-color: #39A900 !important;
+    border-color: #39A900 !important;
+}
+
+.btn-success:hover {
+    background-color: #2f8500 !important;
+    border-color: #2f8500 !important;
+}
+
+.btn-sena {
+    background-color: #39A900;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-sena:hover {
+    background-color: #2f8500;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    transition: 0.3s;
+}
+
+.card-header {
+    background-color: #39A900;
+    color: white;
+}
+
+
+
+.form-control {
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.form-control:focus {
+    border-color: #39A900;
+    box-shadow: 0 0 0 0.2rem rgba(57, 169, 0, 0.15);
+}
+
+
+
+.contact-icon {
+    width: 45px;
+    height: 45px;
+
+    background-color: #39A900;
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+
+.footer-sena {
+    background-color: #222;
+    color: white;
+}
+
+.footer-logo {
+    width: 55px;
+    height: 55px;
+
+    object-fit: contain;
+
+    background-color: white;
+    border-radius: 50%;
+
+    padding: 4px;
+}
+
+.footer-sena h5 {
+    color: #39A900;
+}
+
+.footer-sena p {
+    color: #ddd;
+}
+
+
+/* Enlaces del footer */
+
+.footer-links {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ddd;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #39A900;
+    padding-left: 5px;
+}
+
+.footer-links i {
+    width: 25px;
+}
+
+
+/* Redes sociales */
+
+.social-icon {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    margin-right: 6px;
+
+    border-radius: 50%;
+
+    background-color: #39A900;
+    color: white;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.social-icon:hover {
+    background-color: white;
+    color: #39A900;
+
+    transform: translateY(-3px);
+}
+
+
+/* Parte inferior */
+
+.footer-bottom {
+    background-color: #151515;
+    border-top: 1px solid #444;
+}
+
+
+.table {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: #39A900;
+    color: white;
+}
+
+.table tbody tr:hover {
+    background-color: #f0fbe9;
+}
+
+
+
+.alert-success {
+    border-left: 5px solid #39A900;
+}
+
+
+
+@media (max-width: 768px) {
+
+    .navbar-brand {
+        font-size: 18px;
+    }
+
+    .navbar .nav-link {
+        margin-left: 0;
+    }
+
+    .footer-sena {
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin: auto;
+    }
+
+}
+
+/* =========================
+   BOTONES DE ACCIONES
+   ========================= */
+
+/* Nuevo y Buscar */
+.btn-primary {
+    background-color: #39A900 !important;
+    border-color: #39A900 !important;
+    color: white !important;
+}
+
+.btn-primary:hover {
+    background-color: #2d8500 !important;
+    border-color: #2d8500 !important;
+}
+
+
+/* Ver */
+.btn-info {
+    background-color: #39A900 !important;
+    border-color: #39A900 !important;
+    color: white !important;
+}
+
+.btn-info:hover {
+    background-color: #2d8500 !important;
+    border-color: #2d8500 !important;
+}
+
+
+/* Editar */
+.btn-warning {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: white !important;
+}
+
+.btn-warning:hover {
+    background-color: #495057 !important;
+    border-color: #495057 !important;
+    color: white !important;
+}
+
+
+/* Eliminar */
+.btn-danger {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: white !important;
+}
+
+.btn-danger:hover {
+    background-color: #b02a37 !important;
+    border-color: #b02a37 !important;
+}
+
+
+/* Todos los botones de acciones */
+.btn {
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+/* =========================================
+   MODO OSCURO
+========================================= */
+
+html.dark-mode body {
+    background-color: #121212 !important;
+    color: #f1f1f1 !important;
+}
+
+
+/* Contenedor */
+
+html.dark-mode .container {
+    color: #f1f1f1;
+}
+
+
+/* Títulos */
+
+html.dark-mode h1,
+html.dark-mode h2,
+html.dark-mode h3,
+html.dark-mode h4,
+html.dark-mode h5,
+html.dark-mode h6 {
+    color: #ffffff !important;
+}
+
+
+/* Párrafos */
+
+html.dark-mode p {
+    color: #dddddd;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+html.dark-mode .navbar-sena {
+    background-color: #181818 !important;
+}
+
+html.dark-mode .navbar-sena .nav-link {
+    color: #ffffff !important;
+}
+
+
+/* Si todavía usas bg-success */
+
+html.dark-mode .navbar.bg-success {
+    background-color: #181818 !important;
+}
+
+
+/* =========================================
+   CARDS
+========================================= */
+
+html.dark-mode .card {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+    border-color: #3a3a3a !important;
+}
+
+html.dark-mode .card-body {
+    color: #ffffff !important;
+}
+
+
+/* =========================================
+   TABLAS
+========================================= */
+
+html.dark-mode .table {
+    --bs-table-bg: #1e1e1e;
+    --bs-table-color: #ffffff;
+
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+}
+
+html.dark-mode .table tbody tr {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+}
+
+html.dark-mode .table td {
+    color: #ffffff !important;
+}
+
+
+/* =========================================
+   FORMULARIOS
+========================================= */
+
+html.dark-mode .form-control,
+html.dark-mode .form-select {
+    background-color: #252525 !important;
+    color: #ffffff !important;
+    border-color: #444444 !important;
+}
+
+html.dark-mode .form-control::placeholder {
+    color: #999999 !important;
+}
+
+html.dark-mode label {
+    color: #ffffff !important;
+}
+
+
+/* =========================================
+   DROPDOWN
+========================================= */
+
+html.dark-mode .dropdown-menu {
+    background-color: #1e1e1e !important;
+    border-color: #444444 !important;
+}
+
+html.dark-mode .dropdown-item {
+    color: #ffffff !important;
+}
+
+html.dark-mode .dropdown-item:hover {
+    background-color: #333333 !important;
+    color: #39a900 !important;
+}
+
+
+/* =========================================
+   TEXTOS BOOTSTRAP
+========================================= */
+
+html.dark-mode .text-dark {
+    color: #ffffff !important;
+}
+
+html.dark-mode .text-muted {
+    color: #aaaaaa !important;
+}
+
+html.dark-mode .bg-white {
+    background-color: #1e1e1e !important;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+html.dark-mode footer {
+    background-color: #0d0d0d !important;
+    color: #ffffff !important;
+}
+
+
+/* =========================================
+   TRANSICIÓN
+========================================= */
+
+body,
+.card,
+.table,
+.form-control,
+.form-select,
+.navbar,
+.dropdown-menu,
+footer {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}

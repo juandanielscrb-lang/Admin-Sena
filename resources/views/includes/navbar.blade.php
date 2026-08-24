@@ -2,6 +2,7 @@
 
     <div class="container">
 
+        {{-- Logo SENA --}}
         <a class="navbar-brand d-flex align-items-center"
            href="{{ route('inicio') }}">
 
@@ -15,6 +16,7 @@
 
         </a>
 
+        {{-- Botón responsive --}}
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -28,18 +30,23 @@
 
             <ul class="navbar-nav ms-auto align-items-lg-center">
 
+                {{-- Inicio --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('inicio') }}">
+                        <i class="fa-solid fa-house"></i>
                         Inicio
                     </a>
                 </li>
 
+                {{-- Quiénes somos --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('quienes.somos') }}">
+                        <i class="fa-solid fa-users"></i>
                         ¿Quiénes somos?
                     </a>
                 </li>
 
+                {{-- Administración --}}
                 <li class="nav-item dropdown">
 
                     <a class="nav-link dropdown-toggle"
@@ -47,6 +54,7 @@
                        role="button"
                        data-bs-toggle="dropdown">
 
+                        <i class="fa-solid fa-gear"></i>
                         Administración
 
                     </a>
@@ -54,44 +62,62 @@
                     <ul class="dropdown-menu">
 
                         <li>
-                            <a class="dropdown-item"
-                               href="{{ route('area.list') }}">
+                            <a href="{{ route('area.list') }}"
+                               class="dropdown-item">
+
+                                <i class="fa-solid fa-building me-2"></i>
                                 Áreas
+
                             </a>
                         </li>
 
                         <li>
-                            <a class="dropdown-item"
-                               href="{{ route('trainingCenter.list') }}">
-                                Centros de formación
+                            <a href="{{ route('trainingCenter.list') }}"
+                               class="dropdown-item">
+
+                                <i class="fa-solid fa-school me-2"></i>
+                                Centros de Formación
+
                             </a>
                         </li>
 
                         <li>
-                            <a class="dropdown-item"
-                               href="{{ route('computer.list') }}">
-                                Computadores
-                            </a>
-                        </li>
+                            <a href="{{ route('course.list') }}"
+                               class="dropdown-item">
 
-                        <li>
-                            <a class="dropdown-item"
-                               href="{{ route('teacher.list') }}">
-                                Intructores
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item"
-                               href="{{ route('course.list') }}">
+                                <i class="fa-solid fa-book me-2"></i>
                                 Cursos
+
                             </a>
                         </li>
 
                         <li>
-                            <a class="dropdown-item"
-                               href="{{ route('apprentice.list') }}">
+                            <a href="{{ route('teacher.list') }}"
+                               class="dropdown-item">
+
+                                <i class="fa-solid fa-chalkboard-user me-2"></i>
+                                Instructores
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('apprentice.list') }}"
+                               class="dropdown-item">
+
+                                <i class="fa-solid fa-user-graduate me-2"></i>
                                 Aprendices
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('computer.list') }}"
+                               class="dropdown-item">
+
+                                <i class="fa-solid fa-computer me-2"></i>
+                                Computadores
+
                             </a>
                         </li>
 
@@ -99,12 +125,17 @@
 
                 </li>
 
+                {{-- Contáctanos --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contactanos') }}">
+
+                        <i class="fa-solid fa-phone"></i>
                         Contáctanos
+
                     </a>
                 </li>
 
+                {{-- Buscar --}}
                 <li class="nav-item ms-lg-3">
 
                     <form class="d-flex">
@@ -116,17 +147,43 @@
 
                         <button type="submit"
                                 class="btn btn-light btn-sm ms-1">
-                            
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
                         </button>
 
                     </form>
 
                 </li>
 
+                {{-- Iniciar sesión --}}
                 <li class="nav-item ms-lg-3">
+
                     <a class="nav-link" href="#">
-                         Iniciar sesión
+
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Iniciar sesión
+
                     </a>
+
+                </li>
+
+                {{-- Modo oscuro --}}
+                <li class="nav-item ms-lg-2">
+
+                    <button id="themeToggle"
+                            type="button"
+                            class="theme-toggle">
+
+                        <i id="themeIcon"
+                           class="fa-solid fa-moon"></i>
+
+                        <span id="themeText">
+                            Oscuro
+                        </span>
+
+                    </button>
+
                 </li>
 
             </ul>
