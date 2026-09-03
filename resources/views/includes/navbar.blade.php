@@ -158,15 +158,13 @@
 
                 {{-- Iniciar sesión --}}
                 <li class="nav-item ms-lg-3">
-
-                    <a class="nav-link" href="#">
-
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                        Iniciar sesión
-
-                    </a>
-
-                </li>
+                    <a class="nav-link" href="{{ route('login') }}">
+                        
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Iniciar sesión
+                </a>
+            
+            </li>
 
                 {{-- Modo oscuro --}}
                 <li class="nav-item ms-lg-2">

@@ -8,6 +8,7 @@ use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ApprenticeController;
+use App\Http\Controllers\AuthController;
 
 
 
@@ -81,3 +82,12 @@ Route::get('/contactanos', function () {return view('contactanos.index');})->nam
 Route::get('/quienes-somos', function () {return view('quienes_somos.index');})->name('quienes.somos');
 
 Route::get('/noticias', function () {return view('noticias.index');})->name('noticias');
+
+// Login
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+// Registro
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+// Cerrar sesión
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
