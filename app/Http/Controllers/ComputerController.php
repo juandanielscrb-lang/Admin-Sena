@@ -32,16 +32,27 @@ class ComputerController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $computer = new Computer();
+{
+    $computer = new Computer();
 
-        $computer->number = $request->number;
-        $computer->brand = $request->brand;
+    $computer->number = $request->number;
+    $computer->brand = $request->brand;
 
-        $computer->save();
+    // Adjuntar la foto
+    $file = $request->file('urlFoto');
 
-        return redirect()->route('computer.list');
+    if ($file) {
+        $nombreArchivo = "foto_" . time() . "." . $file->guessExtension();
+
+        $file->storeAs('public/images', $nombreArchivo);
+
+        $computer->urlFoto = $nombreArchivo;
     }
+
+    $computer->save();
+
+    return redirect()->route('computer.list');
+}
 
     public function show($id)
     {

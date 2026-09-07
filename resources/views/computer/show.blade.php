@@ -14,6 +14,35 @@
 
         <div class="card-body">
 
+            {{-- FOTO --}}
+            <div class="mb-4 text-center">
+
+                <strong>Foto:</strong>
+
+                <div class="mt-2">
+
+                    @if($computer->urlFoto)
+
+                        <img
+                            src="{{ asset('storage/images/' . $computer->urlFoto) }}"
+                            alt="Imagen del computador"
+                            width="300"
+                            height="250"
+                            style="object-fit: cover; border-radius: 8px;"
+                        >
+
+                    @else
+
+                        <p class="text-muted mt-2">
+                            Sin imagen
+                        </p>
+
+                    @endif
+
+                </div>
+
+            </div>
+
             <div class="mb-3">
                 <strong>ID:</strong>
                 <p>{{ $computer->id }}</p>

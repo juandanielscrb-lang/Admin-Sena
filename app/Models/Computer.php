@@ -14,6 +14,10 @@ class Computer extends Model
         'brand'
     ];
 
+    protected $guarded = [
+        'urlFoto'
+    ];
+
     public function apprentice()
     {
         return $this->hasOne(Apprentice::class);

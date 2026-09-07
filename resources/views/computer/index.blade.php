@@ -52,6 +52,7 @@
                 <th>ID</th>
                 <th>Número</th>
                 <th>Marca</th>
+                <th>Foto</th>
                 <th>Acciones</th>
             </tr>
 
@@ -75,6 +76,26 @@
                         {{ $computer->brand }}
                     </td>
 
+                    {{-- FOTO --}}
+                    <td>
+                        @if($computer->urlFoto)
+
+                            <img
+                                src="{{ asset('storage/images/' . $computer->urlFoto) }}"
+                                alt="Imagen del computador"
+                                width="80"
+                                height="80"
+                                style="object-fit: cover; border-radius: 5px;"
+                            >
+
+                        @else
+
+                            Sin imagen
+
+                        @endif
+                    </td>
+
+                    {{-- ACCIONES --}}
                     <td>
 
                         {{-- VER --}}
@@ -121,7 +142,7 @@
 
                 <tr>
 
-                    <td colspan="4" class="text-center">
+                    <td colspan="5" class="text-center">
 
                         @if(request('search'))
 
