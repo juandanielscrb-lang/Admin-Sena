@@ -70,4 +70,10 @@ class CourseController extends Controller
 
         return redirect()->route('course.list');
     }
+
+    public function apiindex()
+    {
+        $courses = Course::with(['area', 'training_center'])->get();
+        return response()->json($courses);
+    }
 }

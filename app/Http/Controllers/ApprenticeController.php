@@ -104,4 +104,10 @@ class ApprenticeController extends Controller
             ->route('apprentice.list')
             ->with('success', 'Aprendiz eliminado correctamente.');
     }
+
+    public function apiindex()
+    {
+        $aprendices = Apprentice::with(['course', 'computer'])->get();
+        return response()->json($aprendices);
+    }
 }

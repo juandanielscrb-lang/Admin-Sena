@@ -51,4 +51,6 @@ class ConsultasController extends Controller
         $compu = Computer::query()->find(3);
         return $compu->aprendices;
     }
+
+    
 }

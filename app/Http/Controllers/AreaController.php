@@ -77,4 +77,10 @@ class AreaController extends Controller
             ->route('area.list')
             ->with('success', 'Área eliminada correctamente.');
     }
+
+    public function apiindex()
+    {
+        $areas = Area::all();
+        return response()->json($areas);
+    }
 }

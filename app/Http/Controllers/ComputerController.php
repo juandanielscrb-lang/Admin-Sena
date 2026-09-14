@@ -82,4 +82,10 @@ class ComputerController extends Controller
 
         return redirect()->route('computer.list');
     }
+
+    public function apiindex()
+    {
+        $computers = Computer::all();
+        return response()->json($computers);
+    }
 }

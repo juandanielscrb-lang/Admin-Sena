@@ -65,4 +65,10 @@ class TrainingCenterController extends Controller
 
         return redirect()->route('trainingCenter.list');
     }
+
+    public function apiindex()
+    {
+        $centers = TrainingCenter::all();
+        return response()->json($centers);
+    }
 }

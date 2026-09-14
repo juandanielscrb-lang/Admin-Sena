@@ -62,4 +62,10 @@ class TeacherController extends Controller
 
         return redirect()->route('teacher.list');
     }
+
+    public function apiindex()
+    {
+        $teachers = Teacher::with(['area', 'training_center'])->get();
+        return response()->json($teachers);
+    }
 }
