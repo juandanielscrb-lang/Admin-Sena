@@ -26,14 +26,29 @@ class TeacherController extends Controller
 
     public function store(Request $request)
     {
-        Teacher::create($request->all());
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'area_id' => ['nullable', 'exists:areas,id'],
+            'training_center_id' => ['nullable', 'exists:training_centers,id'],
+        ]);
+
+        $teacher = Teacher::create($validated);
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($teacher->load(['area', 'training_center']), 201);
+        }
 
         return redirect()->route('teacher.list');
     }
 
     public function show($id)
     {
-        $teacher = Teacher::find($id);
+        $teacher = Teacher::with(['area', 'training_center'])->findOrFail($id);
+
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json($teacher);
+        }
 
         return view('teacher.show', compact('teacher'));
     }
@@ -51,7 +66,18 @@ class TeacherController extends Controller
 
     public function update(Request $request, Teacher $teacher)
     {
-        $teacher->update($request->all());
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'area_id' => ['nullable', 'exists:areas,id'],
+            'training_center_id' => ['nullable', 'exists:training_centers,id'],
+        ]);
+
+        $teacher->update($validated);
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($teacher->load(['area', 'training_center']));
+        }
 
         return redirect()->route('teacher.list');
     }
@@ -59,6 +85,10 @@ class TeacherController extends Controller
     public function destroy(Teacher $teacher)
     {
         $teacher->delete();
+
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json(['message' => 'Docente eliminado correctamente.']);
+        }
 
         return redirect()->route('teacher.list');
     }

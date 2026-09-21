@@ -32,14 +32,27 @@ class TrainingCenterController extends Controller
 
     public function store(Request $request)
     {
-        TrainingCenter::create($request->all());
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'location' => ['required', 'string', 'max:255'],
+        ]);
+
+        $center = TrainingCenter::create($validated);
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($center, 201);
+        }
 
         return redirect()->route('trainingCenter.list');
     }
 
     public function show($id)
     {
-        $center = TrainingCenter::find($id);
+        $center = TrainingCenter::findOrFail($id);
+
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json($center);
+        }
 
         return view('trainingCenter.show', compact('center'));
     }
@@ -54,7 +67,16 @@ class TrainingCenterController extends Controller
 
     public function update(Request $request, TrainingCenter $trainingCenter)
     {
-        $trainingCenter->update($request->all());
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'location' => ['required', 'string', 'max:255'],
+        ]);
+
+        $trainingCenter->update($validated);
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($trainingCenter);
+        }
 
         return redirect()->route('trainingCenter.list');
     }
@@ -62,6 +84,10 @@ class TrainingCenterController extends Controller
     public function destroy(TrainingCenter $trainingCenter)
     {
         $trainingCenter->delete();
+
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json(['message' => 'Centro de formación eliminado correctamente.']);
+        }
 
         return redirect()->route('trainingCenter.list');
     }

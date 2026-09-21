@@ -32,31 +32,45 @@ class ComputerController extends Controller
     }
 
     public function store(Request $request)
-{
-    $computer = new Computer();
+    {
+        $validated = $request->validate([
+            'number' => ['required', 'string', 'max:255'],
+            'brand' => ['required', 'string', 'max:255'],
+            'urlFoto' => ['nullable', 'file', 'image', 'max:2048'],
+        ]);
 
-    $computer->number = $request->number;
-    $computer->brand = $request->brand;
+        $computer = new Computer();
 
-    // Adjuntar la foto
-    $file = $request->file('urlFoto');
+        $computer->number = $validated['number'];
+        $computer->brand = $validated['brand'];
 
-    if ($file) {
-        $nombreArchivo = "foto_" . time() . "." . $file->guessExtension();
+        // Adjuntar la foto
+        $file = $request->file('urlFoto');
 
-        $file->storeAs('public/images', $nombreArchivo);
+        if ($file) {
+            $nombreArchivo = "foto_" . time() . "." . $file->guessExtension();
 
-        $computer->urlFoto = $nombreArchivo;
+            $file->storeAs('public/images', $nombreArchivo);
+
+            $computer->urlFoto = $nombreArchivo;
+        }
+
+        $computer->save();
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($computer, 201);
+        }
+
+        return redirect()->route('computer.list');
     }
-
-    $computer->save();
-
-    return redirect()->route('computer.list');
-}
 
     public function show($id)
     {
-        $computer = Computer::find($id);
+        $computer = Computer::findOrFail($id);
+
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json($computer);
+        }
 
         return view('computer.show', compact('computer'));
     }
@@ -68,10 +82,19 @@ class ComputerController extends Controller
 
     public function update(Request $request, Computer $computer)
     {
-        $computer->number = $request->number;
-        $computer->brand = $request->brand;
+        $validated = $request->validate([
+            'number' => ['required', 'string', 'max:255'],
+            'brand' => ['required', 'string', 'max:255'],
+        ]);
+
+        $computer->number = $validated['number'];
+        $computer->brand = $validated['brand'];
 
         $computer->save();
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($computer);
+        }
 
         return redirect()->route('computer.list');
     }
@@ -79,6 +102,10 @@ class ComputerController extends Controller
     public function destroy(Computer $computer)
     {
         $computer->delete();
+
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json(['message' => 'Computador eliminado correctamente.']);
+        }
 
         return redirect()->route('computer.list');
     }

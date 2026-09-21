@@ -34,14 +34,29 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
-        Course::create($request->all());
+        $validated = $request->validate([
+            'course_number' => ['required', 'string', 'max:45'],
+            'day' => ['required', 'string', 'max:45'],
+            'area_id' => ['nullable', 'exists:areas,id'],
+            'training_center_id' => ['nullable', 'exists:training_centers,id'],
+        ]);
+
+        $course = Course::create($validated);
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($course->load(['area', 'training_center']), 201);
+        }
 
         return redirect()->route('course.list');
     }
 
     public function show($id)
     {
-        $course = Course::find($id);
+        $course = Course::with(['area', 'training_center'])->findOrFail($id);
+
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json($course);
+        }
 
         return view('course.show', compact('course'));
     }
@@ -59,7 +74,18 @@ class CourseController extends Controller
 
     public function update(Request $request, Course $course)
     {
-        $course->update($request->all());
+        $validated = $request->validate([
+            'course_number' => ['required', 'string', 'max:45'],
+            'day' => ['required', 'string', 'max:45'],
+            'area_id' => ['nullable', 'exists:areas,id'],
+            'training_center_id' => ['nullable', 'exists:training_centers,id'],
+        ]);
+
+        $course->update($validated);
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($course->load(['area', 'training_center']));
+        }
 
         return redirect()->route('course.list');
     }
@@ -67,6 +93,10 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $course->delete();
+
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json(['message' => 'Curso eliminado correctamente.']);
+        }
 
         return redirect()->route('course.list');
     }

@@ -37,6 +37,10 @@ class ApprenticeController extends Controller
         $aprendice = Apprentice::with(['course', 'computer'])
             ->findOrFail($id);
 
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json($aprendice);
+        }
+
         return view('apprentice.show', compact('aprendice'));
     }
 
@@ -57,7 +61,19 @@ class ApprenticeController extends Controller
     // GUARDAR
     public function store(Request $request)
     {
-        Apprentice::create($request->all());
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'cell_number' => ['required', 'string', 'max:255'],
+            'course_id' => ['nullable', 'exists:courses,id'],
+            'computer_id' => ['nullable', 'exists:computers,id'],
+        ]);
+
+        $apprentice = Apprentice::create($validated);
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($apprentice->load(['course', 'computer']), 201);
+        }
 
         return redirect()
             ->route('apprentice.list')
@@ -86,7 +102,19 @@ class ApprenticeController extends Controller
     {
         $aprendice = Apprentice::findOrFail($id);
 
-        $aprendice->update($request->all());
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'cell_number' => ['required', 'string', 'max:255'],
+            'course_id' => ['nullable', 'exists:courses,id'],
+            'computer_id' => ['nullable', 'exists:computers,id'],
+        ]);
+
+        $aprendice->update($validated);
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($aprendice->load(['course', 'computer']));
+        }
 
         return redirect()
             ->route('apprentice.list')
@@ -99,6 +127,10 @@ class ApprenticeController extends Controller
         $aprendice = Apprentice::findOrFail($id);
 
         $aprendice->delete();
+
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json(['message' => 'Aprendiz eliminado correctamente.']);
+        }
 
         return redirect()
             ->route('apprentice.list')

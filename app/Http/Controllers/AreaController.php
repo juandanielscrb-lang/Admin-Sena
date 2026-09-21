@@ -31,11 +31,19 @@ class AreaController extends Controller
     // GUARDAR
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
         $area = new Area();
 
-        $area->name = $request->name;
+        $area->name = $validated['name'];
 
         $area->save();
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($area, 201);
+        }
 
         return redirect()
             ->route('area.list')
@@ -46,6 +54,10 @@ class AreaController extends Controller
     public function show($id)
     {
         $area = Area::findOrFail($id);
+
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json($area);
+        }
 
         return view('area.show', compact('area'));
     }
@@ -59,9 +71,17 @@ class AreaController extends Controller
     // ACTUALIZAR
     public function update(Request $request, Area $area)
     {
-        $area->name = $request->name;
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        $area->name = $validated['name'];
 
         $area->save();
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json($area);
+        }
 
         return redirect()
             ->route('area.list')
@@ -72,6 +92,10 @@ class AreaController extends Controller
     public function destroy(Area $area)
     {
         $area->delete();
+
+        if (request()->is('api/*') || request()->expectsJson()) {
+            return response()->json(['message' => 'Área eliminada correctamente.']);
+        }
 
         return redirect()
             ->route('area.list')
