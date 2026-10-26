@@ -147,18 +147,6 @@
 
         </div>
 
-        <div class="col-md-6 text-center text-md-end">
-
-            <small class="text-white-50">
-
-                Desarrollado con
-                <i class="fa-solid fa-heart text-danger mx-1"></i>
-                por aprendices SENA
-
-            </small>
-
-        </div>
-
     </div>
 
 </div>

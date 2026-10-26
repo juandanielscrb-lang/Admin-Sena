@@ -6,10 +6,10 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
 
-        <h1>Lista de Profesores</h1>
+        <h1>Lista de Instructores</h1>
 
         <a href="{{ route('teacher.create') }}" class="btn btn-primary">
-            Nuevo Profesor
+            Nuevo Instructor
         </a>
 
     </div>
@@ -132,7 +132,7 @@
                 <tr>
 
                     <td colspan="6" class="text-center">
-                        No hay profesores registrados.
+                        No hay instructores registrados.
                     </td>
 
                 </tr>

@@ -4,55 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Computer;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ComputerController extends Controller
 {
-    // LISTAR Y BUSCAR
-    public function index(Request $request)
-    {
-        $search = $request->search;
-
-        $computers = Computer::query();
-
-        if ($search) {
-            $computers->where(function ($query) use ($search) {
-                $query->where('number', 'like', "%{$search}%")
-                      ->orWhere('brand', 'like', "%{$search}%");
-            });
-        }
-
-        $computers = $computers->get();
-
-        return view('computer.index', compact('computers'));
-    }
-
-    public function create()
-    {
-        return view('computer.create');
-    }
+    // ... (tus otros métodos index, create, etc. se quedan igual)
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'number' => ['required', 'string', 'max:255'],
-            'brand' => ['required', 'string', 'max:255'],
-            'urlFoto' => ['nullable', 'file', 'image', 'max:2048'],
+            'brand'  => ['required', 'string', 'max:255'],
+            'imagen' => ['nullable', 'file', 'image', 'max:5120'], 
         ]);
 
         $computer = new Computer();
-
         $computer->number = $validated['number'];
-        $computer->brand = $validated['brand'];
+        $computer->brand  = $validated['brand'];
 
-        // Adjuntar la foto
-        $file = $request->file('urlFoto');
+        // 2. Subimos la imagen directamente a Cloudinary
+        $file = $request->file('imagen');
 
         if ($file) {
-            $nombreArchivo = "foto_" . time() . "." . $file->guessExtension();
+            // Sube la imagen a la nube y obtiene la URL segura y absoluta
+            $uploadedFileUrl = Cloudinary::upload($file->getRealPath())->getSecurePath();
 
-            $file->storeAs('public/images', $nombreArchivo);
-
-            $computer->urlFoto = $nombreArchivo;
+            // Guardamos esa URL completa en la columna urlFoto de la base de datos
+            $computer->urlFoto = $uploadedFileUrl;
         }
 
         $computer->save();
@@ -63,6 +41,8 @@ class ComputerController extends Controller
 
         return redirect()->route('computer.list');
     }
+
+    // ... (show, edit, destroy, apiindex se quedan igual)
 
     public function show($id)
     {
